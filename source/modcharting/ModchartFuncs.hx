@@ -16,6 +16,8 @@ import game.Conductor;
 #elseif PSYCH
 import states.PlayState;
 import backend.Conductor;
+import psychlua.FunkinLua;
+import psychlua.HScript;
 #end
 
 import modcharting.Modifier;
@@ -38,7 +40,7 @@ class ModchartFuncs
         for (funkin in PlayState.instance.luaArray)
         {
             #if hscript
-            funkin.initHaxeModule();
+            funkin.hscript.initHaxeModule();
             #end
             Lua_helper.add_callback(funkin.lua, 'startMod', function(name:String, modClass:String, type:String = '', pf:Int = -1){
                 startMod(name,modClass,type,pf);

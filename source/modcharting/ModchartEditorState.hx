@@ -77,6 +77,8 @@ import states.LoadingState;
 import backend.MusicBeatState;
 import backend.MusicBeatSubstate;
 import backend.Paths;
+import states.TitleState;
+import backend.StageData;
 #else
 import Section.SwagSection;
 import Song.SwagSong;
@@ -342,7 +344,9 @@ class ModchartEditorState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson('tutorial');
 
 		Conductor.mapBPMChanges(PlayState.SONG);
+        #if !PSYCH
 		Conductor.changeBPM(PlayState.SONG.bpm);
+        #end
 
         FlxG.mouse.visible = true;
 
@@ -805,7 +809,9 @@ class ModchartEditorState extends MusicBeatState
         if (curBpmChange.bpm != Conductor.bpm)
         {
             //trace('changed bpm to ' + curBpmChange.bpm);
-            Conductor.changeBPM(curBpmChange.bpm);
+            #if !PSYCH
+		    Conductor.changeBPM(curBpmChange.bpm);
+            #end
         }
 
 
@@ -978,7 +984,9 @@ class ModchartEditorState extends MusicBeatState
     {
 
         var songData = PlayState.SONG;
-        Conductor.changeBPM(songData.bpm);
+        #if !PSYCH
+		Conductor.changeBPM(songData.bpm);
+        #end
 
         if (PlayState.SONG.needsVoices)
         {
@@ -1054,7 +1062,7 @@ class ModchartEditorState extends MusicBeatState
                 swagNote.mustPress = gottaHitNote;
                 swagNote.gfNote = (section.gfSection && (songNotes[1]<4));
                 swagNote.noteType = songNotes[3];
-                if(!Std.isOfType(songNotes[3], String)) swagNote.noteType = editors.ChartingState.noteTypeList[songNotes[3]]; //Backward compatibility + compatibility with Week 7 charts
+                if(!Std.isOfType(songNotes[3], String)) swagNote.noteType = states.editors.ChartingState.noteTypeList[songNotes[3]]; //Backward compatibility + compatibility with Week 7 charts
                 #elseif LEATHER 
                 var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, 0, songNotes[4], null, [0], gottaHitNote);
                 swagNote.sustainLength = songNotes[2];
@@ -1120,8 +1128,8 @@ class ModchartEditorState extends MusicBeatState
             if (player < 1)
             {
                 #if PSYCH
-                if(!ClientPrefs.opponentStrums) targetAlpha = 0;
-                else if(ClientPrefs.middleScroll) targetAlpha = 0.35;
+                if(!ClientPrefs.data.opponentStrums) targetAlpha = 0;
+                else if(ClientPrefs.data.middleScroll) targetAlpha = 0.35;
                 #end
             }
 
@@ -1149,8 +1157,8 @@ class ModchartEditorState extends MusicBeatState
 			babyArrow.x += 100 - ((usedKeyCount - 4) * 16) + (usedKeyCount >= 10 ? 30 : 0);
 			babyArrow.x += ((FlxG.width / 2) * player);
             #elseif PSYCH 
-            var babyArrow:StrumNote = new StrumNote(ClientPrefs.middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X, strumLine.y, i, player);
-            babyArrow.downScroll = ClientPrefs.downScroll;
+            var babyArrow:StrumNote = new StrumNote(ClientPrefs.data.middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X, strumLine.y, i, player);
+            babyArrow.downScroll = ClientPrefs.data.downScroll;
             babyArrow.alpha = targetAlpha;
             #end
 
@@ -1162,7 +1170,7 @@ class ModchartEditorState extends MusicBeatState
             else
             {
                 #if PSYCH 
-                if(ClientPrefs.middleScroll)
+                if(ClientPrefs.data.middleScroll)
                 {
                     babyArrow.x += 310;
                     if(i > 1) { //Up and Right
