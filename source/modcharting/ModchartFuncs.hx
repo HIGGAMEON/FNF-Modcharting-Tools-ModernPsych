@@ -82,19 +82,19 @@ class ModchartFuncs
                 ease(beat, time, easeStr, argsAsString);
                 
             });
+            #if hscript
+            if (funkin.hscript != null)
+            {
+                funkin.hscript.variables.set('Math', Math);
+                funkin.hscript.variables.set('PlayfieldRenderer', PlayfieldRenderer);
+                funkin.hscript.variables.set('ModchartUtil', ModchartUtil);
+                funkin.hscript.variables.set('Modifier', Modifier);
+                funkin.hscript.variables.set('NoteMovement', NoteMovement);
+                funkin.hscript.variables.set('NotePositionData', NotePositionData);
+                funkin.hscript.variables.set('ModchartFile', ModchartFile);
+            }
+            #end
         }
-        #if hscript
-        if (funkin.hscript != null)
-        {
-            funkin.hscript.variables.set('Math', Math);
-            funkin.hscript.variables.set('PlayfieldRenderer', PlayfieldRenderer);
-            funkin.hscript.variables.set('ModchartUtil', ModchartUtil);
-            funkin.hscript.variables.set('Modifier', Modifier);
-            funkin.hscript.variables.set('NoteMovement', NoteMovement);
-            funkin.hscript.variables.set('NotePositionData', NotePositionData);
-            funkin.hscript.variables.set('ModchartFile', ModchartFile);
-        }
-        #end
         #end
         #end
     }
