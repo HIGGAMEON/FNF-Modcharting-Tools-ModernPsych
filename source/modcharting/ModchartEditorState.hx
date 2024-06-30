@@ -549,23 +549,21 @@ class ModchartEditorState extends MusicBeatState
             {
                 blockInput = true;
                 #if PSYCH
-                FlxG.sound.muteKeys = [];
-				FlxG.sound.volumeDownKeys = [];
-				FlxG.sound.volumeUpKeys = [];
+                ClientPrefs.toggleVolumeKeys(false);
                 #end
             }
                 
         for (i in scrollBlockers)
-            if (i.dropPanel.visible)
+            if (i.dropPanel.visible) {
                 blockInput = true;
+                ClientPrefs.toggleVolumeKeys(false);
+            }
         
 
         if (!blockInput)
         {
             #if PSYCH
-            FlxG.sound.muteKeys = TitleState.muteKeys;
-			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+            ClientPrefs.toggleVolumeKeys(true);
             #end
             if (FlxG.keys.justPressed.SPACE)
             {
@@ -988,6 +986,9 @@ class ModchartEditorState extends MusicBeatState
 		Conductor.changeBPM(songData.bpm);
         #end
 
+        Conductor.bpm = songData.bpm;
+
+        #if !PSYCH
         if (PlayState.SONG.needsVoices)
         {
             #if LEATHER 
@@ -998,10 +999,26 @@ class ModchartEditorState extends MusicBeatState
         }
         else
             vocals = new FlxSound();
+        #else
+            vocals = new FlxSound();
+		    //opponentVocals = new FlxSound();
+		    try
+		    {
+		    	if (songData.needsVoices)
+		    	{
+		    		var playerVocals = Paths.voices(songData.song, 'Player');
+		    		vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(songData.song));
+                    
+				    //var oppVocals = Paths.voices(songData.song, 'Opponent');
+				    //if(oppVocals != null) opponentVocals.loadEmbedded(oppVocals);
+	    		}
+    		}
+            catch(e:Dynamic) {}
+        #end
 
         //vocals.pitch = playbackRate;
         FlxG.sound.list.add(vocals);
-        FlxG.sound.list.add(new FlxSound().loadEmbedded(Paths.inst(PlayState.SONG.song)));
+        FlxG.sound.list.add(new FlxSound().loadEmbedded(Paths.inst(songData.song)));
 
         FlxG.sound.music.onComplete = function()
         {
