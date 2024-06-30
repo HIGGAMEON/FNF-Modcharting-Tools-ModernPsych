@@ -267,7 +267,7 @@ class CustomModifierScript
 
         #if PSYCH
         interp.variables.set('ClientPrefs', ClientPrefs);
-        interp.variables.set('ColorSwap', ColorSwap);
+        interp.variables.set('ColorSwap', shaders.ColorSwap);
         #end
 
         
