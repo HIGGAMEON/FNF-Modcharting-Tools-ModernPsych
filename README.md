@@ -1,5 +1,5 @@
 # Note
-I am not the creating of FNF-Modcharting-Tools-ModernPsych!
+I am not the creator of FNF-Modcharting-Tools-ModernPsych!
 I am just a random strange who ported to for Psych 0.7+
 Feel free to help out if you want!
 
