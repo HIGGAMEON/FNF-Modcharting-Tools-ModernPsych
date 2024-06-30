@@ -1,3 +1,8 @@
+# Note
+I am not the creating of FNF-Modcharting-Tools-ModernPsych!
+I am just a random strange who ported to for Psych 0.7+
+Feel free to help out if you want!
+
 # FNF Modcharting Tools
 Just a thing I made to make modcharting easier, should be easy to add to most engines.
 Still very WIP and not everything is supported yet!
