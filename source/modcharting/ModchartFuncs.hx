@@ -83,18 +83,18 @@ class ModchartFuncs
                 
             });
         }
-        #end
         #if hscript
-        if (FunkinLua.hscript != null)
+        if (funkin.hscript != null)
         {
-            FunkinLua.hscript.variables.set('Math', Math);
-            FunkinLua.hscript.variables.set('PlayfieldRenderer', PlayfieldRenderer);
-            FunkinLua.hscript.variables.set('ModchartUtil', ModchartUtil);
-            FunkinLua.hscript.variables.set('Modifier', Modifier);
-            FunkinLua.hscript.variables.set('NoteMovement', NoteMovement);
-            FunkinLua.hscript.variables.set('NotePositionData', NotePositionData);
-            FunkinLua.hscript.variables.set('ModchartFile', ModchartFile);
+            funkin.hscript.variables.set('Math', Math);
+            funkin.hscript.variables.set('PlayfieldRenderer', PlayfieldRenderer);
+            funkin.hscript.variables.set('ModchartUtil', ModchartUtil);
+            funkin.hscript.variables.set('Modifier', Modifier);
+            funkin.hscript.variables.set('NoteMovement', NoteMovement);
+            funkin.hscript.variables.set('NotePositionData', NotePositionData);
+            funkin.hscript.variables.set('ModchartFile', ModchartFile);
         }
+        #end
         #end
         #end
     }
