@@ -39,9 +39,9 @@ class ModchartFuncs
         #if LUA_ALLOWED
         for (funkin in PlayState.instance.luaArray)
         {
-            #if hscript
-            funkin.hscript.initHaxeModule();
-            #end
+            //#if hscript   ifk if it works tbh
+            //funkin.hscript.initHaxeModule();
+            //#end
             Lua_helper.add_callback(funkin.lua, 'startMod', function(name:String, modClass:String, type:String = '', pf:Int = -1){
                 startMod(name,modClass,type,pf);
 
@@ -96,10 +96,6 @@ class ModchartFuncs
             FunkinLua.hscript.variables.set('ModchartFile', ModchartFile);
         }
         #end
-
-
-        #elseif LEATHER
-
         #end
     }
 
