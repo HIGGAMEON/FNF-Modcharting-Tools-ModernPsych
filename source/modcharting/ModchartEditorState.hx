@@ -63,6 +63,20 @@ import utilities.NoteVariables;
 import states.LoadingState;
 import states.MusicBeatState;
 import substates.MusicBeatSubstate;
+#elseif PSYCH
+import backend.ClientPrefs;
+import states.PlayState;
+import backend.Song;
+import backend.Section;
+import objects.Note;
+import flixel.addons.ui.FlxUIDropDownMenu as FlxUIDropDownMenuCustom;
+import backend.Conductor;
+import backend.CoolUtil;
+import objects.StrumNote;
+import states.LoadingState;
+import backend.MusicBeatState;
+import backend.MusicBeatSubstate;
+import backend.Paths;
 #else
 import Section.SwagSection;
 import Song.SwagSong;
@@ -362,7 +376,7 @@ class ModchartEditorState extends MusicBeatState
 
 
         #if PSYCH
-		strumLine = new FlxSprite(ClientPrefs.middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X, 50).makeGraphic(FlxG.width, 10);
+		strumLine = new FlxSprite(ClientPrefs.data.middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X, 50).makeGraphic(FlxG.width, 10);
         if(ModchartUtil.getDownscroll(this)) strumLine.y = FlxG.height - 150;
         #else
         strumLine = new FlxSprite(0, 100).makeGraphic(FlxG.width, 10);

@@ -13,6 +13,9 @@ import llua.Convert;
 #if LEATHER
 import states.PlayState;
 import game.Conductor;
+#elseif PSYCH
+import states.PlayState;
+import backend.Conductor;
 #end
 
 import modcharting.Modifier;

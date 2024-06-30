@@ -11,6 +11,12 @@ import game.Conductor;
 #if polymod
 import polymod.backends.PolymodAssets;
 #end
+#elseif PSYCH
+import backend.ClientPrefs;
+import states.PlayState;
+import objects.Note;
+import backend.Conductor;
+import backend.Paths;
 #end
 #if sys
 import sys.io.File;

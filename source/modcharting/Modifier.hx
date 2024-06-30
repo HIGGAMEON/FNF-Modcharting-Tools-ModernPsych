@@ -9,6 +9,11 @@ import states.PlayState;
 import game.Note;
 import game.StrumNote;
 import game.Conductor;
+#elseif PSYCH
+import states.PlayState;
+import objects.Note;
+import objects.StrumNote;
+import backend.Conductor;
 #else 
 import PlayState;
 import Note;
